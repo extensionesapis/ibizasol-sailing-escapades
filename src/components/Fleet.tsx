@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { Card, CardContent } from './ui/card';
+import { Anchor, Calendar, Navigation } from 'lucide-react';
 
 // Yacht type definitions
 interface Yacht {
@@ -66,7 +67,7 @@ const yachtData: Yacht[] = [
 
 const Fleet: React.FC = () => {
   return (
-    <section id="fleet" className="py-20 px-4 bg-white">
+    <section id="fleet" className="py-20 px-4 bg-gradient-to-b from-white to-blue-50">
       <div className="container mx-auto">
         <div className="text-center mb-16 animate-on-scroll">
           <h2 className="text-3xl md:text-4xl font-bold text-ocean-800 mb-4">
@@ -77,7 +78,7 @@ const Fleet: React.FC = () => {
           </p>
         </div>
 
-        {/* Yacht grid - improved card design without detailed characteristics */}
+        {/* Yacht grid - improved card design with enhanced visual appeal */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {yachtData.map((yacht, index) => (
             <div
@@ -85,30 +86,35 @@ const Fleet: React.FC = () => {
               className="animate-on-scroll"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
-              <Card className="overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 h-full border-none">
+              <Card className="overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 h-full border-none rounded-xl">
                 <div className="relative">
-                  <div className="h-64 overflow-hidden">
+                  <div className="h-72 overflow-hidden">
                     <img
                       src={yacht.imageUrl}
                       alt={yacht.name}
                       className="w-full h-full object-cover transition-transform duration-700 hover:scale-110"
                     />
                   </div>
-                  <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm text-ocean-800 px-3 py-1 rounded-md text-sm font-bold shadow-md">
+                  <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm text-ocean-800 px-4 py-2 rounded-full text-sm font-bold shadow-lg">
                     {yacht.price}
                   </div>
                   <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent h-24" />
                 </div>
-                <CardContent className="p-6 bg-white relative">
-                  <div className="flex flex-col gap-2">
-                    <div>
-                      <h3 className="text-xl font-bold text-ocean-800">{yacht.name}</h3>
-                      <p className="text-ocean-600 text-sm font-medium">{yacht.type}</p>
+                <CardContent className="p-8 bg-white">
+                  <div className="flex flex-col gap-4">
+                    <div className="flex items-center gap-2">
+                      {yacht.type === "Motor Yacht" && <Navigation className="h-5 w-5 text-ocean-600" />}
+                      {yacht.type === "Sailing Yacht" && <Anchor className="h-5 w-5 text-ocean-600" />}
+                      {yacht.type === "Catamaran" && <Calendar className="h-5 w-5 text-ocean-600" />}
+                      <div>
+                        <h3 className="text-2xl font-bold text-ocean-800">{yacht.name}</h3>
+                        <p className="text-ocean-600 text-sm font-medium">{yacht.type}</p>
+                      </div>
                     </div>
-                    <p className="text-gray-600 mt-2">{yacht.description}</p>
+                    <p className="text-gray-600">{yacht.description}</p>
                     <a
                       href="#contact"
-                      className="mt-4 inline-block w-full bg-ocean-600 hover:bg-ocean-700 text-white py-3 px-4 rounded-md text-center font-medium transition-colors"
+                      className="mt-2 inline-block w-full bg-ocean-600 hover:bg-ocean-700 text-white py-3 px-4 rounded-full text-center font-medium transition-colors shadow-md hover:shadow-lg"
                     >
                       Inquire Now
                     </a>

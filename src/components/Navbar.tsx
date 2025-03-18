@@ -31,15 +31,16 @@ const Navbar: React.FC = () => {
       className={cn(
         'fixed top-0 left-0 w-full z-50 transition-all duration-300',
         isScrolled
-          ? 'bg-white/95 backdrop-blur-sm shadow-md py-4'
-          : 'bg-transparent py-6'
+          ? 'bg-white/90 backdrop-blur-md shadow-lg py-3'
+          : 'bg-gradient-to-b from-black/50 to-transparent py-6'
       )}
     >
       <div className="container px-4 md:px-6 mx-auto flex items-center justify-between">
-        <a href="#" className="flex items-center gap-2">
-          <Anchor className="w-8 h-8 text-ocean-700" />
-          <span className="text-2xl font-bold text-ocean-800 tracking-tight">
-            IbizaSol<span className="text-ocean-600">Charter</span>
+        <a href="#" className="flex items-center gap-2 z-10">
+          <Anchor className={cn("w-8 h-8", isScrolled ? "text-ocean-700" : "text-white")} />
+          <span className={cn("text-2xl font-bold tracking-tight", 
+            isScrolled ? "text-ocean-800" : "text-white")}>
+            IbizaSol<span className={isScrolled ? "text-ocean-600" : "text-ocean-300"}>Charter</span>
           </span>
         </a>
 
@@ -50,7 +51,7 @@ const Navbar: React.FC = () => {
               key={item}
               href={`#${item.toLowerCase()}`}
               className={cn(
-                'font-medium transition-colors duration-200 hover:text-ocean-600 link-underline',
+                'font-medium transition-colors duration-200 hover:text-ocean-400 link-underline',
                 isScrolled ? 'text-ocean-800' : 'text-white'
               )}
             >
@@ -60,9 +61,9 @@ const Navbar: React.FC = () => {
           <a
             href="#contact"
             className={cn(
-              'px-5 py-2.5 rounded-md font-medium transition-all duration-200 transform hover:scale-105',
+              'px-6 py-3 rounded-full font-medium transition-all duration-300 transform hover:scale-105 shadow-md',
               isScrolled
-                ? 'bg-ocean-700 text-white hover:bg-ocean-800'
+                ? 'bg-ocean-600 hover:bg-ocean-700 text-white'
                 : 'bg-white/20 backdrop-blur-sm text-white hover:bg-white/30 border border-white/30'
             )}
           >
@@ -73,7 +74,10 @@ const Navbar: React.FC = () => {
         {/* Mobile Menu Button */}
         <button
           onClick={toggleMobileMenu}
-          className="md:hidden text-ocean-800 hover:text-ocean-600 transition-colors"
+          className={cn(
+            "md:hidden transition-colors z-10", 
+            isScrolled ? "text-ocean-800 hover:text-ocean-600" : "text-white hover:text-ocean-300"
+          )}
           aria-label="Toggle menu"
         >
           {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -100,7 +104,7 @@ const Navbar: React.FC = () => {
           ))}
           <a
             href="#contact"
-            className="mt-4 px-6 py-3 bg-white text-ocean-800 rounded-md font-medium hover:bg-opacity-90 transition-colors"
+            className="mt-4 px-8 py-3 bg-white text-ocean-800 rounded-full font-medium hover:bg-opacity-90 transition-colors shadow-md"
             onClick={() => setIsMobileMenuOpen(false)}
           >
             Book Now
