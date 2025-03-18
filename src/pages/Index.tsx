@@ -11,17 +11,21 @@ import Footer from '@/components/Footer';
 
 const Index: React.FC = () => {
   useEffect(() => {
-    // Animation for elements that should animate when they enter the viewport
+    // Optimized animation for elements that should animate when they enter the viewport
     const animateOnScroll = () => {
       const elements = document.querySelectorAll('.animate-on-scroll');
       
       const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
+          // Only add the class if the element is intersecting and doesn't already have the class
+          if (entry.isIntersecting && !entry.target.classList.contains('animate-active')) {
             entry.target.classList.add('animate-active');
           }
         });
-      }, { threshold: 0.1 });
+      }, { 
+        threshold: 0.1,
+        rootMargin: '0px 0px -10% 0px' // Start animation slightly before element is in view
+      });
       
       elements.forEach((element) => {
         observer.observe(element);
@@ -34,7 +38,10 @@ const Index: React.FC = () => {
       };
     };
     
-    animateOnScroll();
+    // Use requestAnimationFrame for better performance
+    requestAnimationFrame(() => {
+      animateOnScroll();
+    });
   }, []);
   
   return (
