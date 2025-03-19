@@ -35,8 +35,19 @@ const Navbar: React.FC = () => {
 
   const handleLanguageChange = (lang: 'es' | 'en') => {
     setLanguage(lang);
-    // Aquí podría ir la lógica para cambiar el idioma en toda la aplicación
+    // Store the language preference in localStorage
+    localStorage.setItem('language', lang);
+    // Trigger a page reload to apply language changes
+    window.location.reload();
   };
+
+  // Check for stored language preference on component mount
+  useEffect(() => {
+    const storedLanguage = localStorage.getItem('language') as 'es' | 'en';
+    if (storedLanguage) {
+      setLanguage(storedLanguage);
+    }
+  }, []);
 
   return (
     <div className="w-full flex justify-center fixed top-0 left-0 z-50 pt-6 transition-all duration-300">
@@ -45,38 +56,41 @@ const Navbar: React.FC = () => {
           'w-11/12 max-w-6xl rounded-full transition-all duration-300',
           isScrolled
             ? 'bg-white/95 backdrop-blur-md shadow-lg py-3'
-            : 'bg-white/20 backdrop-blur-sm py-3 border border-white/20'
+            : 'bg-white/30 backdrop-blur-sm py-3 border border-white/30'
         )}
       >
         <div className="px-4 md:px-6 mx-auto flex items-center justify-between">
           <a href="#" className="flex items-center gap-2 z-10">
-            <Anchor className={cn("w-8 h-8", isScrolled ? "text-ocean-700" : "text-white")} />
+            <Anchor className={cn("w-8 h-8", isScrolled ? "text-turquoise-600" : "text-white")} />
             <span className={cn("text-2xl font-bold tracking-tight", 
-              isScrolled ? "text-ocean-800" : "text-white")}>
-              IbizaSol<span className={isScrolled ? "text-ocean-600" : "text-ocean-300"}>Charter</span>
+              isScrolled ? "text-turquoise-800" : "text-white")}>
+              IbizaSol<span className={isScrolled ? "text-turquoise-500" : "text-turquoise-300"}>Charter</span>
             </span>
           </a>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-6">
+          {/* Desktop Navigation - Centered */}
+          <nav className="hidden md:flex items-center space-x-6 absolute left-1/2 transform -translate-x-1/2">
             {['Home', 'Fleet', 'Experiences', 'About', 'Gallery'].map((item) => (
               <a
                 key={item}
                 href={`#${item.toLowerCase()}`}
                 className={cn(
-                  'font-medium transition-colors duration-200 hover:text-ocean-400 link-underline',
-                  isScrolled ? 'text-ocean-800' : 'text-white'
+                  'font-medium transition-colors duration-200 hover:text-turquoise-400 link-underline',
+                  isScrolled ? 'text-turquoise-800' : 'text-white'
                 )}
               >
                 {item}
               </a>
             ))}
+          </nav>
 
+          {/* Right-aligned items */}
+          <div className="flex items-center space-x-4 z-10">
             {/* Language Selector Dropdown */}
             <DropdownMenu>
               <DropdownMenuTrigger className={cn(
                 "flex items-center gap-1 px-3 py-1 rounded-md transition-colors",
-                isScrolled ? "text-ocean-800 hover:bg-ocean-100" : "text-white hover:bg-white/20"
+                isScrolled ? "text-turquoise-800 hover:bg-turquoise-100" : "text-white hover:bg-white/20"
               )}>
                 <Globe className="h-4 w-4" />
                 <span>{language === 'es' ? 'ES' : 'EN'}</span>
@@ -102,20 +116,20 @@ const Navbar: React.FC = () => {
               className={cn(
                 'px-6 py-3 rounded-full font-medium transition-all duration-300 transform hover:scale-105 shadow-md',
                 isScrolled
-                  ? 'bg-ocean-600 hover:bg-ocean-700 text-white'
-                  : 'bg-white/30 backdrop-blur-sm text-white hover:bg-white/40 border border-white/40'
+                  ? 'bg-turquoise-500 hover:bg-turquoise-600 text-white'
+                  : 'bg-white/40 backdrop-blur-sm text-white hover:bg-white/50 border border-white/50'
               )}
             >
               {language === 'es' ? 'Reservar' : 'Book Now'}
             </a>
-          </nav>
+          </div>
 
           {/* Mobile Menu Button */}
           <button
             onClick={toggleMobileMenu}
             className={cn(
               "md:hidden transition-colors z-10", 
-              isScrolled ? "text-ocean-800 hover:text-ocean-600" : "text-white hover:text-ocean-300"
+              isScrolled ? "text-turquoise-800 hover:text-turquoise-600" : "text-white hover:text-turquoise-300"
             )}
             aria-label="Toggle menu"
           >
@@ -126,7 +140,7 @@ const Navbar: React.FC = () => {
         {/* Mobile Menu */}
         <div
           className={cn(
-            'md:hidden fixed inset-0 bg-ocean-900/95 backdrop-blur-md transition-all duration-300 ease-in-out z-40 flex flex-col items-center justify-center',
+            'md:hidden fixed inset-0 bg-turquoise-900/95 backdrop-blur-md transition-all duration-300 ease-in-out z-40 flex flex-col items-center justify-center',
             isMobileMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
           )}
         >
@@ -135,7 +149,7 @@ const Navbar: React.FC = () => {
               <a
                 key={item}
                 href={`#${item.toLowerCase()}`}
-                className="text-white text-xl font-medium hover:text-ocean-300 transition-colors"
+                className="text-white text-xl font-medium hover:text-turquoise-300 transition-colors"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 {item}
@@ -162,7 +176,7 @@ const Navbar: React.FC = () => {
             
             <a
               href="#contact"
-              className="mt-4 px-8 py-3 bg-white text-ocean-800 rounded-full font-medium hover:bg-opacity-90 transition-colors shadow-md"
+              className="mt-4 px-8 py-3 bg-white text-turquoise-800 rounded-full font-medium hover:bg-opacity-90 transition-colors shadow-md"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               {language === 'es' ? 'Reservar' : 'Book Now'}

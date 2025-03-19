@@ -42,6 +42,11 @@ const Index: React.FC = () => {
     requestAnimationFrame(() => {
       animateOnScroll();
     });
+
+    // Check if language is set in localStorage
+    if (!localStorage.getItem('language')) {
+      localStorage.setItem('language', 'es'); // Default to Spanish
+    }
   }, []);
   
   return (
