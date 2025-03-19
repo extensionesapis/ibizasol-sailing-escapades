@@ -39,13 +39,13 @@ const Navbar: React.FC = () => {
   };
 
   return (
-    <div className="w-full flex justify-center pt-6 z-50 absolute top-0 left-0">
+    <div className="w-full flex justify-center fixed top-0 left-0 z-50 pt-6 transition-all duration-300">
       <header
         className={cn(
-          'w-11/12 max-w-6xl rounded-full transition-all duration-300 z-50',
+          'w-11/12 max-w-6xl rounded-full transition-all duration-300',
           isScrolled
-            ? 'bg-white/90 backdrop-blur-md shadow-lg py-3'
-            : 'bg-white/10 backdrop-blur-sm py-3 border border-white/20'
+            ? 'bg-white/95 backdrop-blur-md shadow-lg py-3'
+            : 'bg-white/20 backdrop-blur-sm py-3 border border-white/20'
         )}
       >
         <div className="px-4 md:px-6 mx-auto flex items-center justify-between">
@@ -103,7 +103,7 @@ const Navbar: React.FC = () => {
                 'px-6 py-3 rounded-full font-medium transition-all duration-300 transform hover:scale-105 shadow-md',
                 isScrolled
                   ? 'bg-ocean-600 hover:bg-ocean-700 text-white'
-                  : 'bg-white/20 backdrop-blur-sm text-white hover:bg-white/30 border border-white/30'
+                  : 'bg-white/30 backdrop-blur-sm text-white hover:bg-white/40 border border-white/40'
               )}
             >
               {language === 'es' ? 'Reservar' : 'Book Now'}
