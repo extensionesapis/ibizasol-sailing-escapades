@@ -105,7 +105,7 @@ const Testimonials: React.FC = () => {
         <div className="relative max-w-4xl mx-auto">
           <button
             onClick={prevSlide}
-            className="absolute -left-4 md:-left-8 top-1/2 -translate-y-1/2 z-20 bg-white hover:bg-gray-50 shadow-md text-slate-700 rounded-full p-3 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-turquoise-300"
+            className="absolute -left-4 md:-left-8 top-1/2 -translate-y-1/2 z-20 bg-white hover:bg-turquoise-50 text-turquoise-500 rounded-full p-3 transition-all duration-300 focus:outline-none shadow-md hover:shadow-lg"
             aria-label="Previous testimonial"
           >
             <ChevronLeft className="w-6 h-6" />
@@ -113,7 +113,7 @@ const Testimonials: React.FC = () => {
 
           <button
             onClick={nextSlide}
-            className="absolute -right-4 md:-right-8 top-1/2 -translate-y-1/2 z-20 bg-white hover:bg-gray-50 shadow-md text-slate-700 rounded-full p-3 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-turquoise-300"
+            className="absolute -right-4 md:-right-8 top-1/2 -translate-y-1/2 z-20 bg-white hover:bg-turquoise-50 text-turquoise-500 rounded-full p-3 transition-all duration-300 focus:outline-none shadow-md hover:shadow-lg"
             aria-label="Next testimonial"
           >
             <ChevronRight className="w-6 h-6" />
@@ -132,45 +132,39 @@ const Testimonials: React.FC = () => {
                   key={testimonial.id}
                   className="min-w-full"
                 >
-                  <Card className="border-none shadow-lg overflow-hidden bg-white">
+                  <Card className="border-none bg-white overflow-hidden hover:shadow-xl transition-shadow duration-300">
                     <CardContent className="p-0">
-                      <div className="flex flex-col md:flex-row rounded-2xl overflow-hidden">
-                        <div className="md:w-1/3 bg-white p-8 flex flex-col justify-center items-center text-center relative">
-                          <div className="mb-6">
-                            <div className="w-24 h-24 rounded-full overflow-hidden border-4 border-white shadow-md mx-auto mb-4 ring-2 ring-turquoise-100">
-                              <img
-                                src={testimonial.avatar}
-                                alt={testimonial.name}
-                                className="w-full h-full object-cover"
+                      <div className="flex flex-col md:flex-row rounded-xl overflow-hidden">
+                        <div className="md:w-1/3 bg-gradient-to-br from-turquoise-50 to-white p-8 flex flex-col justify-center items-center text-center">
+                          <Quote className="text-turquoise-200 w-12 h-12 mb-4 opacity-30" />
+                          <div className="w-24 h-24 rounded-full overflow-hidden shadow-md mx-auto mb-4 ring-4 ring-white">
+                            <img
+                              src={testimonial.avatar}
+                              alt={testimonial.name}
+                              className="w-full h-full object-cover"
+                            />
+                          </div>
+                          <h4 className="text-xl font-bold mb-1 text-slate-800">{testimonial.name}</h4>
+                          <p className="text-sm text-slate-500 mb-4">{testimonial.location}</p>
+                          <div className="flex justify-center gap-1">
+                            {[...Array(5)].map((_, i) => (
+                              <Star
+                                key={i}
+                                className={cn(
+                                  "w-4 h-4", 
+                                  i < testimonial.rating 
+                                    ? "fill-turquoise-400 text-turquoise-400" 
+                                    : "text-gray-200"
+                                )}
                               />
-                            </div>
-                            <h4 className="text-xl font-bold mb-1 text-slate-800">{testimonial.name}</h4>
-                            <p className="text-sm text-slate-500 mb-3">{testimonial.location}</p>
-                            <div className="flex justify-center gap-1">
-                              {[...Array(5)].map((_, i) => (
-                                <Star
-                                  key={i}
-                                  className={cn(
-                                    "w-4 h-4", 
-                                    i < testimonial.rating 
-                                      ? "fill-turquoise-400 text-turquoise-400" 
-                                      : "text-gray-200"
-                                  )}
-                                />
-                              ))}
-                            </div>
+                            ))}
                           </div>
                         </div>
                         
                         <div className="md:w-2/3 p-8 md:p-10 bg-white flex items-center">
-                          <div>
-                            <div className="relative">
-                              <Quote className="w-10 h-10 absolute -top-4 -left-2 text-turquoise-100 opacity-50 rotate-180" />
-                              <p className="text-lg leading-relaxed text-slate-700 relative z-10 pl-6">
-                                "{testimonial.text}"
-                              </p>
-                            </div>
-                          </div>
+                          <p className="text-lg leading-relaxed text-slate-700 italic">
+                            "{testimonial.text}"
+                          </p>
                         </div>
                       </div>
                     </CardContent>
@@ -191,10 +185,10 @@ const Testimonials: React.FC = () => {
                   setTimeout(() => setIsAnimating(false), 500);
                 }}
                 className={cn(
-                  "h-2 rounded-full transition-all duration-300",
+                  "h-3 rounded-full transition-all duration-300",
                   index === currentSlide 
-                    ? "w-8 bg-turquoise-400" 
-                    : "w-2 bg-gray-200 hover:bg-gray-300"
+                    ? "w-10 bg-turquoise-400" 
+                    : "w-3 bg-gray-200 hover:bg-turquoise-200"
                 )}
                 aria-label={`Go to testimonial ${index + 1}`}
               />
