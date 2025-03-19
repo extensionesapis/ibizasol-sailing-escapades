@@ -135,7 +135,7 @@ const Testimonials: React.FC = () => {
                   <Card className="border-none shadow-lg overflow-hidden bg-white">
                     <CardContent className="p-0">
                       <div className="flex flex-col md:flex-row rounded-2xl overflow-hidden">
-                        <div className="md:w-1/3 bg-white p-8 flex flex-col justify-center items-center text-center relative border-b md:border-b-0 md:border-r border-gray-100">
+                        <div className="md:w-1/3 bg-white p-8 flex flex-col justify-center items-center text-center relative">
                           <div className="mb-6">
                             <div className="w-24 h-24 rounded-full overflow-hidden border-4 border-white shadow-md mx-auto mb-4 ring-2 ring-turquoise-100">
                               <img
