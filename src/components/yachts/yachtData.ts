@@ -4,62 +4,62 @@ import { YachtType } from './types';
 export const yachtData: YachtType[] = [
   {
     id: 1,
-    name: "Azure Horizon",
+    name: "Tour Tagomago",
     type: "Motor Yacht",
     imageUrl: "https://images.unsplash.com/photo-1588093356707-badf8dbcb118?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    price: "€6,500 / day",
-    description: "Luxury motor yacht with spacious sundeck, Jacuzzi, and elegant interiors.",
+    price: "400€ + 100€ patrón",
+    description: "Explora la impresionante isla de Tagomago y sus alrededores en una experiencia única de navegación.",
+    descriptionEs: "Explora la impresionante isla de Tagomago y sus alrededores en una experiencia única de navegación.",
     capacity: 12,
-    length: 85
+    length: 85,
+    highlights: ["Visita a la isla privada", "Baño en aguas cristalinas", "Snorkel en calas exclusivas"],
+    highlightsEs: ["Visita a la isla privada", "Baño en aguas cristalinas", "Snorkel en calas exclusivas"],
+    duration: "6 horas",
+    route: "Ibiza - Tagomago - Ibiza"
   },
   {
     id: 2,
-    name: "Ocean Breeze",
+    name: "Tour Sunset",
     type: "Sailing Yacht",
     imageUrl: "https://images.unsplash.com/photo-1529551739587-e242c564f727?q=80&w=2072&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    price: "€3,200 / day",
-    description: "Classic sailing yacht with modern amenities, perfect for authentic Mediterranean experiences.",
+    price: "550€ + 150€ patrón",
+    description: "Experience the magical Ibiza sunset from the water with champagne and Mediterranean snacks.",
+    descriptionEs: "Experimenta la magia del atardecer ibicenco desde el agua con champán y aperitivos mediterráneos.",
     capacity: 8,
-    length: 65
+    length: 65,
+    highlights: ["Sunset views", "Champagne and snacks", "Swimming stops", "Music onboard"],
+    highlightsEs: ["Vistas del atardecer", "Champán y aperitivos", "Paradas para baño", "Música a bordo"],
+    duration: "4 horas",
+    route: "Ibiza - Es Vedrà - Ibiza"
   },
   {
     id: 3,
-    name: "Crystal Seas",
+    name: "Tour Norte de la isla",
     type: "Catamaran",
     imageUrl: "https://images.unsplash.com/photo-1605283176567-9e7f16519a05?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    price: "€4,800 / day",
-    description: "Spacious catamaran with multiple sunbathing areas and stability for guest comfort.",
+    price: "650€ + 180€ patrón",
+    description: "Discover the northern coastline of Ibiza with its secluded beaches and dramatic cliff formations.",
+    descriptionEs: "Descubre la costa norte de Ibiza con sus playas escondidas y espectaculares formaciones rocosas.",
     capacity: 10,
-    length: 55
+    length: 55,
+    highlights: ["Benirràs Beach", "Portinatx Lighthouse", "Hidden coves", "Crystal clear waters"],
+    highlightsEs: ["Playa de Benirràs", "Faro de Portinatx", "Calas escondidas", "Aguas cristalinas"],
+    duration: "7 horas",
+    route: "Ibiza - Portinatx - Benirràs - Ibiza"
   },
   {
     id: 4,
-    name: "Ibiza Star",
+    name: "Tour Formentera",
     type: "Motor Yacht",
     imageUrl: "https://images.unsplash.com/photo-1567899378494-47b22a2ae96a?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    price: "€2,000 / day",
-    description: "Sporty motor yacht perfect for day trips to Formentera and coastal cruising.",
+    price: "650€ + 180€ patrón",
+    description: "Explore the paradise island of Formentera with its Caribbean-like turquoise waters and white sand beaches.",
+    descriptionEs: "Explora la paradisíaca isla de Formentera con sus aguas turquesas de estilo caribeño y playas de arena blanca.",
     capacity: 6,
-    length: 45
-  },
-  {
-    id: 5,
-    name: "Sunset Voyager",
-    type: "Sailing Yacht",
-    imageUrl: "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    price: "€5,800 / day",
-    description: "Majestic sailing yacht with luxury cabins and professional crew for multi-day charters.",
-    capacity: 10,
-    length: 75
-  },
-  {
-    id: 6,
-    name: "Mediterranean Gem",
-    type: "Catamaran",
-    imageUrl: "https://images.unsplash.com/photo-1612686635542-2264cb0fbb9e?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    price: "€2,500 / day",
-    description: "Compact catamaran offering excellent value with comfortable amenities for day cruising.",
-    capacity: 8,
-    length: 50
+    length: 45,
+    highlights: ["Illetes Beach", "Espalmador Island", "Blue waters", "Local cuisine"],
+    highlightsEs: ["Playa de Illetes", "Isla de Espalmador", "Aguas azules", "Gastronomía local"],
+    duration: "8 horas",
+    route: "Ibiza - Formentera - Ibiza"
   }
 ];

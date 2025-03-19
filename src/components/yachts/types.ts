@@ -1,3 +1,4 @@
+
 export interface Yacht {
   id: number;
   name: string;
@@ -8,6 +9,10 @@ export interface Yacht {
   descriptionEs?: string;
   capacity: number;
   length: number;
+  highlights?: string[];
+  highlightsEs?: string[];
+  duration?: string;
+  route?: string;
 }
 
 // Keep the original type for backward compatibility
