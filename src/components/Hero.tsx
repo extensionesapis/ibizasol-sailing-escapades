@@ -71,11 +71,11 @@ const Hero: React.FC = () => {
       en: 'Select date'
     },
     guests: {
-      es: 'Invitados',
+      es: 'Personas',
       en: 'Guests'
     },
     numGuests: {
-      es: 'Número de invitados',
+      es: 'Número de personas',
       en: 'Number of guests'
     },
     people: {
@@ -134,8 +134,8 @@ const Hero: React.FC = () => {
           </p>
           
           <div className="bg-white/20 backdrop-blur-md p-6 md:p-8 rounded-2xl border border-white/30 max-w-4xl mx-auto animate-fade-in shadow-lg" style={{ animationDelay: '0.4s' }}>
-            <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-4 gap-5">
-              <div className="space-y-2">
+            <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-12 gap-5">
+              <div className="space-y-2 md:col-span-3">
                 <label className="text-white text-sm font-medium">
                   {texts.date[language]}
                 </label>
@@ -159,7 +159,7 @@ const Hero: React.FC = () => {
                 </Popover>
               </div>
               
-              <div className="space-y-2">
+              <div className="space-y-2 md:col-span-3">
                 <label className="text-white text-sm font-medium">
                   {texts.guests[language]}
                 </label>
@@ -177,7 +177,7 @@ const Hero: React.FC = () => {
                 </Select>
               </div>
               
-              <div className="space-y-2">
+              <div className="space-y-2 md:col-span-3">
                 <label className="text-white text-sm font-medium">
                   {texts.boatType[language]}
                 </label>
@@ -194,10 +194,14 @@ const Hero: React.FC = () => {
                 </Select>
               </div>
               
-              <Button type="submit" className="bg-turquoise-500 hover:bg-turquoise-600 text-white font-medium shadow-md hover:shadow-lg flex items-center justify-center gap-2">
-                <Search className="w-4 h-4" />
-                {texts.search[language]}
-              </Button>
+              <div className="md:col-span-3 flex items-end">
+                <Button 
+                  type="submit" 
+                  className="w-full bg-turquoise-600 hover:bg-turquoise-700 text-white font-medium shadow-md hover:shadow-lg h-10 flex items-center justify-center gap-2 backdrop-blur-none border border-turquoise-400/30">
+                  <Search className="w-4 h-4" />
+                  {texts.search[language]}
+                </Button>
+              </div>
             </form>
           </div>
         </div>
