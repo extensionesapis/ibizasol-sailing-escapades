@@ -1,7 +1,10 @@
+
 import React, { useState, useEffect, useRef } from 'react';
 import { ChevronLeft, ChevronRight, Star, Quote } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { Card, CardContent } from '@/components/ui/card';
+import { Card } from '@/components/ui/card';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Separator } from '@/components/ui/separator';
 
 interface Testimonial {
   id: number;
@@ -121,7 +124,7 @@ const Testimonials: React.FC = () => {
 
           <div 
             ref={sliderRef}
-            className="overflow-hidden rounded-2xl"
+            className="overflow-hidden rounded-2xl shadow-xl"
           >
             <div
               className="flex transition-transform duration-500 ease-out"
@@ -132,49 +135,61 @@ const Testimonials: React.FC = () => {
                   key={testimonial.id}
                   className="min-w-full"
                 >
-                  <Card className="border-none bg-white overflow-hidden hover:shadow-xl transition-shadow duration-300">
-                    <CardContent className="p-0">
-                      <div className="flex flex-col md:flex-row rounded-xl overflow-hidden">
-                        <div className="md:w-1/3 bg-gradient-to-br from-turquoise-50 to-white p-8 flex flex-col justify-center items-center text-center">
-                          <Quote className="text-turquoise-200 w-12 h-12 mb-4 opacity-30" />
-                          <div className="w-24 h-24 rounded-full overflow-hidden shadow-md mx-auto mb-4 ring-4 ring-white">
-                            <img
-                              src={testimonial.avatar}
-                              alt={testimonial.name}
-                              className="w-full h-full object-cover"
-                            />
-                          </div>
-                          <h4 className="text-xl font-bold mb-1 text-slate-800">{testimonial.name}</h4>
-                          <p className="text-sm text-slate-500 mb-4">{testimonial.location}</p>
-                          <div className="flex justify-center gap-1">
-                            {[...Array(5)].map((_, i) => (
-                              <Star
-                                key={i}
-                                className={cn(
-                                  "w-4 h-4", 
-                                  i < testimonial.rating 
-                                    ? "fill-turquoise-400 text-turquoise-400" 
-                                    : "text-gray-200"
-                                )}
-                              />
-                            ))}
-                          </div>
+                  <Card className="overflow-hidden hover:shadow-2xl transition-all duration-300 group">
+                    <div className="flex flex-col md:flex-row h-full">
+                      <div className="md:w-1/3 bg-gradient-to-br from-turquoise-100 to-turquoise-50 p-8 flex flex-col items-center justify-center text-center relative">
+                        <div className="absolute top-6 left-6 opacity-20">
+                          <Quote className="text-turquoise-500 w-16 h-16" />
                         </div>
                         
-                        <div className="md:w-2/3 p-8 md:p-10 bg-white flex items-center">
-                          <p className="text-lg leading-relaxed text-slate-700 italic">
-                            "{testimonial.text}"
+                        <Avatar className="w-24 h-24 border-4 border-white shadow-lg mb-6 group-hover:scale-105 transition-transform duration-300">
+                          <AvatarImage src={testimonial.avatar} alt={testimonial.name} />
+                          <AvatarFallback className="bg-turquoise-200 text-turquoise-700 text-xl font-bold">
+                            {testimonial.name.split(' ').map(n => n[0]).join('')}
+                          </AvatarFallback>
+                        </Avatar>
+                        
+                        <h4 className="text-xl font-bold mb-1 text-slate-800">{testimonial.name}</h4>
+                        <p className="text-sm text-slate-500 mb-4">{testimonial.location}</p>
+                        
+                        <div className="flex justify-center gap-1 mb-4">
+                          {[...Array(5)].map((_, i) => (
+                            <Star
+                              key={i}
+                              className={cn(
+                                "w-5 h-5", 
+                                i < testimonial.rating 
+                                  ? "fill-turquoise-400 text-turquoise-400" 
+                                  : "text-gray-200"
+                              )}
+                            />
+                          ))}
+                        </div>
+                        
+                        <Separator className="w-16 bg-turquoise-200 h-0.5 mt-2" />
+                      </div>
+                      
+                      <div className="md:w-2/3 p-10 bg-white flex items-center">
+                        <div>
+                          <Quote className="w-10 h-10 text-turquoise-100 mb-4 rotate-180" />
+                          <p className="text-lg leading-relaxed text-slate-700 italic mb-6">
+                            {testimonial.text}
                           </p>
+                          <div className="flex items-center">
+                            <div className="h-1 w-12 bg-gradient-to-r from-turquoise-400 to-turquoise-200 rounded-full" />
+                            <div className="h-1 w-1 bg-turquoise-300 rounded-full ml-1" />
+                            <div className="h-1 w-1 bg-turquoise-200 rounded-full ml-1" />
+                          </div>
                         </div>
                       </div>
-                    </CardContent>
+                    </div>
                   </Card>
                 </div>
               ))}
             </div>
           </div>
 
-          <div className="flex justify-center mt-8 gap-2">
+          <div className="flex justify-center mt-10 gap-2">
             {testimonials.map((_, index) => (
               <button
                 key={index}
@@ -185,10 +200,10 @@ const Testimonials: React.FC = () => {
                   setTimeout(() => setIsAnimating(false), 500);
                 }}
                 className={cn(
-                  "h-3 rounded-full transition-all duration-300",
+                  "transition-all duration-300 rounded-full",
                   index === currentSlide 
-                    ? "w-10 bg-turquoise-400" 
-                    : "w-3 bg-gray-200 hover:bg-turquoise-200"
+                    ? "w-10 h-2 bg-gradient-to-r from-turquoise-500 to-turquoise-300" 
+                    : "w-2 h-2 bg-gray-200 hover:bg-turquoise-200"
                 )}
                 aria-label={`Go to testimonial ${index + 1}`}
               />
