@@ -91,49 +91,37 @@ const Testimonials: React.FC = () => {
   }, [currentSlide]);
 
   return (
-    <section className="py-24 bg-white text-slate-800 relative overflow-hidden">
-      <div className="absolute top-0 left-0 w-full h-full">
-        <div className="absolute top-0 left-0 w-full h-64 bg-gradient-to-b from-gray-50 to-transparent"></div>
-        <div className="absolute bottom-0 left-0 w-full h-64 bg-gradient-to-t from-gray-50 to-transparent"></div>
-      </div>
-
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="text-center mb-16 max-w-xl mx-auto">
-          <span className="inline-block py-1 px-3 rounded-full bg-gray-100 text-turquoise-500 text-sm font-medium mb-4">
-            Client Stories
-          </span>
+    <section className="py-20 bg-white text-slate-800">
+      <div className="container mx-auto px-4">
+        <div className="text-center mb-16 max-w-2xl mx-auto">
           <h2 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight">
-            What Our <span className="text-turquoise-500">Clients</span> Say
+            What Our <span className="text-turquoise-400">Guests</span> Say
           </h2>
-          <p className="text-lg text-slate-600 leading-relaxed">
+          <p className="text-lg text-slate-600">
             Discover why our guests keep coming back for unforgettable Mediterranean experiences
           </p>
         </div>
 
-        <div className="relative max-w-5xl mx-auto">
-          <div className="absolute -left-5 md:-left-12 top-1/2 -translate-y-1/2 z-20">
-            <button
-              onClick={prevSlide}
-              className="group bg-white shadow-lg hover:shadow-xl text-slate-700 rounded-full p-3 transition-all duration-300 border border-gray-100"
-              aria-label="Previous testimonial"
-            >
-              <ChevronLeft className="w-7 h-7 group-hover:scale-110 transition-transform" />
-            </button>
-          </div>
+        <div className="relative max-w-4xl mx-auto">
+          <button
+            onClick={prevSlide}
+            className="absolute -left-4 md:-left-8 top-1/2 -translate-y-1/2 z-20 bg-white hover:bg-gray-50 shadow-md text-slate-700 rounded-full p-3 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-turquoise-300"
+            aria-label="Previous testimonial"
+          >
+            <ChevronLeft className="w-6 h-6" />
+          </button>
 
-          <div className="absolute -right-5 md:-right-12 top-1/2 -translate-y-1/2 z-20">
-            <button
-              onClick={nextSlide}
-              className="group bg-white shadow-lg hover:shadow-xl text-slate-700 rounded-full p-3 transition-all duration-300 border border-gray-100"
-              aria-label="Next testimonial"
-            >
-              <ChevronRight className="w-7 h-7 group-hover:scale-110 transition-transform" />
-            </button>
-          </div>
+          <button
+            onClick={nextSlide}
+            className="absolute -right-4 md:-right-8 top-1/2 -translate-y-1/2 z-20 bg-white hover:bg-gray-50 shadow-md text-slate-700 rounded-full p-3 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-turquoise-300"
+            aria-label="Next testimonial"
+          >
+            <ChevronRight className="w-6 h-6" />
+          </button>
 
           <div 
             ref={sliderRef}
-            className="overflow-hidden rounded-3xl"
+            className="overflow-hidden rounded-2xl"
           >
             <div
               className="flex transition-transform duration-500 ease-out"
@@ -144,29 +132,29 @@ const Testimonials: React.FC = () => {
                   key={testimonial.id}
                   className="min-w-full"
                 >
-                  <Card className="border border-gray-100 shadow-md overflow-hidden bg-white">
+                  <Card className="border-none shadow-lg overflow-hidden bg-white">
                     <CardContent className="p-0">
-                      <div className="flex flex-col md:flex-row rounded-3xl overflow-hidden">
-                        <div className="md:w-2/5 bg-gray-50 p-8 md:p-10 flex flex-col justify-center items-center text-center relative">
-                          <div className="relative z-10 mb-8 mt-4">
-                            <div className="w-28 h-28 rounded-full overflow-hidden border-4 border-white shadow-md mx-auto mb-6 transform transition-transform duration-500 hover:scale-105">
+                      <div className="flex flex-col md:flex-row rounded-2xl overflow-hidden">
+                        <div className="md:w-1/3 bg-white p-8 flex flex-col justify-center items-center text-center relative border-b md:border-b-0 md:border-r border-gray-100">
+                          <div className="mb-6">
+                            <div className="w-24 h-24 rounded-full overflow-hidden border-4 border-white shadow-md mx-auto mb-4 ring-2 ring-turquoise-100">
                               <img
                                 src={testimonial.avatar}
                                 alt={testimonial.name}
                                 className="w-full h-full object-cover"
                               />
                             </div>
-                            <h4 className="text-2xl font-bold mb-1 text-slate-800">{testimonial.name}</h4>
-                            <p className="text-sm text-slate-500 mb-4">{testimonial.location}</p>
+                            <h4 className="text-xl font-bold mb-1 text-slate-800">{testimonial.name}</h4>
+                            <p className="text-sm text-slate-500 mb-3">{testimonial.location}</p>
                             <div className="flex justify-center gap-1">
                               {[...Array(5)].map((_, i) => (
                                 <Star
                                   key={i}
                                   className={cn(
-                                    "w-5 h-5", 
+                                    "w-4 h-4", 
                                     i < testimonial.rating 
                                       ? "fill-turquoise-400 text-turquoise-400" 
-                                      : "text-gray-300"
+                                      : "text-gray-200"
                                   )}
                                 />
                               ))}
@@ -174,13 +162,14 @@ const Testimonials: React.FC = () => {
                           </div>
                         </div>
                         
-                        <div className="md:w-3/5 p-8 md:p-12 bg-white flex items-center">
+                        <div className="md:w-2/3 p-8 md:p-10 bg-white flex items-center">
                           <div>
-                            <Quote className="w-12 h-12 mb-6 text-turquoise-100 rotate-180" />
-                            <p className="text-lg leading-relaxed mb-8 text-slate-700">
-                              "{testimonial.text}"
-                            </p>
-                            <div className="w-10 h-1 bg-turquoise-400 rounded-full"></div>
+                            <div className="relative">
+                              <Quote className="w-10 h-10 absolute -top-4 -left-2 text-turquoise-100 opacity-50 rotate-180" />
+                              <p className="text-lg leading-relaxed text-slate-700 relative z-10 pl-6">
+                                "{testimonial.text}"
+                              </p>
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -191,7 +180,7 @@ const Testimonials: React.FC = () => {
             </div>
           </div>
 
-          <div className="flex justify-center mt-10 gap-2">
+          <div className="flex justify-center mt-8 gap-2">
             {testimonials.map((_, index) => (
               <button
                 key={index}
