@@ -50,23 +50,29 @@ const Navbar: React.FC = () => {
     <div className="w-full flex justify-center fixed top-0 left-0 z-50 pt-4 md:pt-6 transition-all duration-300">
       <header
         className={cn(
-          'w-11/12 max-w-6xl rounded-full py-3 h-16 transition-all duration-300',
+          'w-11/12 max-w-6xl rounded-full py-3 h-16 transition-colors duration-300',
           isScrolled
             ? 'bg-white/95 backdrop-blur-md shadow-lg'
             : 'bg-white/30 backdrop-blur-sm border border-white/30'
         )}
+        style={{ minHeight: '64px' }} /* Esto evita que cambie de tamaño */
       >
         <div className="px-4 md:px-6 mx-auto flex items-center justify-between h-full">
           <a href="/" className="flex items-center gap-1 md:gap-2 z-10">
-            <img 
-              src="/lovable-uploads/bf6342cc-812b-4a0a-b7e8-93eae05c8c0e.png" 
-              alt="IbizaSol Charter Logo" 
-              className="h-8 md:h-10 w-auto"
-            />
-            <span className={cn("text-xl md:text-2xl font-bold tracking-tight hidden sm:inline-block", 
-              isScrolled ? "text-turquoise-800" : "text-white")}>
-              IbizaSol<span className={isScrolled ? "text-turquoise-500" : "text-turquoise-300"}>Charter</span>
-            </span>
+            {isScrolled ? (
+              <img 
+                src="/lovable-uploads/588c8f79-eeee-47ce-9e79-a289d2c9dcfb.png" 
+                alt="IbizaSol Charter Logo - Black" 
+                className="h-10 md:h-12 w-auto"
+              />
+            ) : (
+              <img 
+                src="/lovable-uploads/bf6342cc-812b-4a0a-b7e8-93eae05c8c0e.png" 
+                alt="IbizaSol Charter Logo - White" 
+                className="h-10 md:h-12 w-auto"
+              />
+            )}
+            {/* Elimino el texto IbizaSolCharter */}
           </a>
 
           {/* Desktop Navigation - Centered */}
@@ -138,7 +144,7 @@ const Navbar: React.FC = () => {
           </button>
         </div>
 
-        {/* Mobile Menu - Improved Styling */}
+        {/* Mobile Menu - Mejorado */}
         <div
           className={cn(
             'md:hidden fixed inset-0 bg-turquoise-900/95 backdrop-blur-md transition-all duration-300 ease-in-out z-40',
@@ -150,9 +156,9 @@ const Navbar: React.FC = () => {
           <div className="h-full flex flex-col items-center justify-center p-6">
             <div className="mb-8">
               <img 
-                src="/lovable-uploads/bf6342cc-812b-4a0a-b7e8-93eae05c8c0e.png" 
+                src="/lovable-uploads/588c8f79-eeee-47ce-9e79-a289d2c9dcfb.png" 
                 alt="IbizaSol Charter Logo" 
-                className="h-16 w-auto mx-auto"
+                className="h-20 w-auto mx-auto"
               />
             </div>
             <nav className="flex flex-col items-center space-y-6 w-full">
