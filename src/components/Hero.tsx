@@ -18,13 +18,74 @@ import {
 import { Calendar as CalendarComponent } from '@/components/ui/calendar';
 import { format } from 'date-fns';
 import { es, enUS } from 'date-fns/locale';
+import { useLanguage } from '@/hooks/use-language';
+
+// Translations object
+const texts = {
+  title: {
+    es: 'Alquiler de Yates de Lujo en Ibiza',
+    en: 'Luxury Yacht Charters in Ibiza'
+  },
+  subtitle: {
+    es: 'Experimente el Mediterráneo con un lujo sin igual. Descubra calas escondidas, playas vírgenes y atardeceres impresionantes a bordo de nuestra flota premium.',
+    en: 'Experience the Mediterranean in unparalleled luxury. Discover hidden coves, pristine beaches, and breathtaking sunsets aboard our premium fleet.'
+  },
+  date: {
+    es: 'Fecha',
+    en: 'Date'
+  },
+  selectDate: {
+    es: 'Seleccionar fecha',
+    en: 'Select date'
+  },
+  guests: {
+    es: 'Personas',
+    en: 'Guests'
+  },
+  numGuests: {
+    es: 'Número de personas',
+    en: 'Number of guests'
+  },
+  people: {
+    es: 'personas',
+    en: 'people'
+  },
+  boatType: {
+    es: 'Tipo de barco',
+    en: 'Boat type'
+  },
+  selectType: {
+    es: 'Seleccionar tipo',
+    en: 'Select type'
+  },
+  any: {
+    es: 'Cualquiera',
+    en: 'Any'
+  },
+  motorYacht: {
+    es: 'Yate a Motor',
+    en: 'Motor Yacht'
+  },
+  sailingYacht: {
+    es: 'Velero',
+    en: 'Sailing Yacht'
+  },
+  catamaran: {
+    es: 'Catamarán',
+    en: 'Catamaran'
+  },
+  search: {
+    es: 'Buscar',
+    en: 'Search'
+  }
+};
 
 const Hero: React.FC = () => {
   const heroRef = useRef<HTMLDivElement>(null);
   const [date, setDate] = useState<Date>();
-  const [language, setLanguage] = useState<'es' | 'en'>('es');
   const [guests, setGuests] = useState<string>('2');
   const [yachtType, setYachtType] = useState<string>('any');
+  const { language } = useLanguage();
   
   useEffect(() => {
     const handleScroll = () => {
@@ -43,73 +104,7 @@ const Hero: React.FC = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log({ date, guests, yachtType });
-    // Aquí puedes manejar la lógica de reserva
-  };
-
-  // Obtener el idioma actual del localStorage o usar español por defecto
-  useEffect(() => {
-    const storedLanguage = localStorage.getItem('language') as 'es' | 'en' || 'es';
-    setLanguage(storedLanguage);
-  }, []);
-
-  // Translations
-  const texts = {
-    title: {
-      es: 'Alquiler de Yates de Lujo en Ibiza',
-      en: 'Luxury Yacht Charters in Ibiza'
-    },
-    subtitle: {
-      es: 'Experimente el Mediterráneo con un lujo sin igual. Descubra calas escondidas, playas vírgenes y atardeceres impresionantes a bordo de nuestra flota premium.',
-      en: 'Experience the Mediterranean in unparalleled luxury. Discover hidden coves, pristine beaches, and breathtaking sunsets aboard our premium fleet.'
-    },
-    date: {
-      es: 'Fecha',
-      en: 'Date'
-    },
-    selectDate: {
-      es: 'Seleccionar fecha',
-      en: 'Select date'
-    },
-    guests: {
-      es: 'Personas',
-      en: 'Guests'
-    },
-    numGuests: {
-      es: 'Número de personas',
-      en: 'Number of guests'
-    },
-    people: {
-      es: 'personas',
-      en: 'people'
-    },
-    boatType: {
-      es: 'Tipo de barco',
-      en: 'Boat type'
-    },
-    selectType: {
-      es: 'Seleccionar tipo',
-      en: 'Select type'
-    },
-    any: {
-      es: 'Cualquiera',
-      en: 'Any'
-    },
-    motorYacht: {
-      es: 'Yate a Motor',
-      en: 'Motor Yacht'
-    },
-    sailingYacht: {
-      es: 'Velero',
-      en: 'Sailing Yacht'
-    },
-    catamaran: {
-      es: 'Catamarán',
-      en: 'Catamaran'
-    },
-    search: {
-      es: 'Buscar',
-      en: 'Search'
-    }
+    // Booking logic would go here
   };
 
   return (
@@ -133,8 +128,8 @@ const Hero: React.FC = () => {
             {texts.subtitle[language]}
           </p>
           
-          <div className="bg-white/20 backdrop-blur-md p-6 md:p-8 rounded-2xl border border-white/30 max-w-4xl mx-auto animate-fade-in shadow-lg" style={{ animationDelay: '0.4s' }}>
-            <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-12 gap-5">
+          <div className="bg-white/20 backdrop-blur-md p-4 md:p-8 rounded-2xl border border-white/30 max-w-4xl mx-auto animate-fade-in shadow-lg" style={{ animationDelay: '0.4s' }}>
+            <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-5">
               <div className="space-y-2 md:col-span-3">
                 <label className="text-white text-sm font-medium">
                   {texts.date[language]}

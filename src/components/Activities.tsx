@@ -1,6 +1,7 @@
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Sunset, Map, GlassWater, PartyPopper, Sailboat, Route } from 'lucide-react';
+import { useLanguage } from '@/hooks/use-language';
 
 interface Activity {
   title: string;
@@ -56,8 +57,7 @@ const activities: Activity[] = [
 ];
 
 const Activities: React.FC = () => {
-  // Get the language from localStorage
-  const language = localStorage.getItem('language') as 'es' | 'en' || 'es';
+  const { language } = useLanguage();
   
   // Translations
   const texts = {

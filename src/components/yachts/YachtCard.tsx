@@ -1,110 +1,119 @@
 
 import React from 'react';
-import { Card, CardContent } from '@/components/ui/card';
-import { Anchor, Calendar, Navigation, Users, Ruler, Wind } from 'lucide-react';
-import { YachtType } from './types';
+import { Yacht } from './types';
+import { Anchor, Users, Ruler, Waves } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
 interface YachtCardProps {
-  yacht: YachtType;
+  yacht: Yacht;
   index: number;
+  language?: 'es' | 'en';
 }
 
-const YachtCard: React.FC<YachtCardProps> = ({ yacht, index }) => {
-  // Get the language from localStorage
-  const language = localStorage.getItem('language') as 'es' | 'en' || 'es';
-  
+const YachtCard: React.FC<YachtCardProps> = ({ yacht, index, language = 'es' }) => {
   // Translations
   const texts = {
-    length: {
-      es: "Longitud",
-      en: "Length"
-    },
     guests: {
-      es: "Hasta 8 invitados",
-      en: "Up to 8 Guests"
+      es: 'Invitados',
+      en: 'Guests'
     },
-    available: {
-      es: "Disponible Ahora",
-      en: "Available Now"
+    length: {
+      es: 'Longitud',
+      en: 'Length'
     },
-    inquire: {
-      es: "Solicitar Información",
-      en: "Inquire Now"
+    type: {
+      es: 'Tipo',
+      en: 'Type'
+    },
+    motorYacht: {
+      es: 'Yate a Motor',
+      en: 'Motor Yacht'
+    },
+    sailingYacht: {
+      es: 'Velero',
+      en: 'Sailing Yacht'
+    },
+    catamaran: {
+      es: 'Catamarán',
+      en: 'Catamaran'
+    },
+    learnMore: {
+      es: 'Más información',
+      en: 'Learn more'
+    },
+    feet: {
+      es: 'pies',
+      en: 'ft'
     }
   };
-  
-  // Yacht type translations
-  const yachtTypeTranslations = {
-    "Motor Yacht": {
-      es: "Yate a Motor",
-      en: "Motor Yacht"
-    },
-    "Sailing Yacht": {
-      es: "Velero",
-      en: "Sailing Yacht"
-    },
-    "Catamaran": {
-      es: "Catamarán",
-      en: "Catamaran"
+
+  // Translate yacht type
+  const getYachtType = (type: string) => {
+    switch (type.toLowerCase()) {
+      case 'motor yacht':
+        return texts.motorYacht[language];
+      case 'sailing yacht':
+        return texts.sailingYacht[language];
+      case 'catamaran':
+        return texts.catamaran[language];
+      default:
+        return type;
     }
   };
 
   return (
     <div 
-      className="animate-on-scroll"
+      className="animate-on-scroll bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
       style={{ animationDelay: `${index * 0.1}s` }}
     >
-      <Card className="overflow-hidden group hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 h-full border-none rounded-xl">
-        <div className="relative">
-          <div className="h-64 sm:h-72 overflow-hidden">
-            <img
-              src={yacht.imageUrl}
-              alt={yacht.name}
-              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-              loading="lazy"
-            />
+      <div className="relative h-52 overflow-hidden">
+        <img 
+          src={yacht.imageUrl} 
+          alt={yacht.name} 
+          className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+        <div className="absolute bottom-4 left-4 flex items-center">
+          <div className="w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center mr-3">
+            <Anchor className="w-5 h-5 text-turquoise-600" />
           </div>
-          <div className="absolute top-4 right-4 bg-turquoise-500 text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg">
-            {yacht.price}
+          <h3 className="text-xl font-bold text-white tracking-tight">{yacht.name}</h3>
+        </div>
+      </div>
+      
+      <div className="p-5">
+        <div className="grid grid-cols-3 gap-2 mb-5">
+          <div className="flex flex-col items-center p-2 bg-turquoise-50 rounded-lg">
+            <Users className="w-5 h-5 text-turquoise-600 mb-1" />
+            <span className="text-xs text-gray-500">{texts.guests[language]}</span>
+            <span className="font-semibold">{yacht.capacity}</span>
           </div>
-          <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent h-32" />
-          <div className="absolute bottom-4 left-4 right-4 text-white">
-            <h3 className="text-xl sm:text-2xl font-semibold tracking-tight">{yacht.name}</h3>
-            <p className="text-white/80 text-sm">{yachtTypeTranslations[yacht.type][language]}</p>
+          <div className="flex flex-col items-center p-2 bg-turquoise-50 rounded-lg">
+            <Ruler className="w-5 h-5 text-turquoise-600 mb-1" />
+            <span className="text-xs text-gray-500">{texts.length[language]}</span>
+            <span className="font-semibold">{yacht.length} {texts.feet[language]}</span>
+          </div>
+          <div className="flex flex-col items-center p-2 bg-turquoise-50 rounded-lg">
+            <Waves className="w-5 h-5 text-turquoise-600 mb-1" />
+            <span className="text-xs text-gray-500">{texts.type[language]}</span>
+            <span className="font-semibold text-xs">{getYachtType(yacht.type)}</span>
           </div>
         </div>
-        <CardContent className="p-4 sm:p-6 bg-white">
-          <div className="flex flex-col gap-4">
-            <div className="grid grid-cols-2 gap-2 sm:gap-3 text-sm text-gray-600">
-              <div className="flex items-center gap-1 sm:gap-2">
-                <Ruler className="h-4 w-4 text-turquoise-600" />
-                <span className="text-xs sm:text-sm">10.5m {texts.length[language]}</span>
-              </div>
-              <div className="flex items-center gap-1 sm:gap-2">
-                <Users className="h-4 w-4 text-turquoise-600" />
-                <span className="text-xs sm:text-sm">{texts.guests[language]}</span>
-              </div>
-              <div className="flex items-center gap-1 sm:gap-2">
-                {yacht.type === "Motor Yacht" && <Navigation className="h-4 w-4 text-turquoise-600" />}
-                {yacht.type === "Sailing Yacht" && <Wind className="h-4 w-4 text-turquoise-600" />}
-                {yacht.type === "Catamaran" && <Anchor className="h-4 w-4 text-turquoise-600" />}
-                <span className="text-xs sm:text-sm">{yachtTypeTranslations[yacht.type][language]}</span>
-              </div>
-              <div className="flex items-center gap-1 sm:gap-2">
-                <Calendar className="h-4 w-4 text-turquoise-600" />
-                <span className="text-xs sm:text-sm">{texts.available[language]}</span>
-              </div>
-            </div>
-            <p className="text-gray-600 line-clamp-2 text-sm">{yacht.description}</p>
-            <a
-              href="#contact"
-              className="mt-2 inline-block w-full bg-turquoise-500 hover:bg-turquoise-600 text-white py-2 sm:py-3 px-4 rounded-lg text-center font-medium transition-colors shadow-md hover:shadow-lg text-sm sm:text-base"
-            >
-              {texts.inquire[language]}
-            </a>
-          </div>
-        </CardContent>
-      </Card>
+        
+        <div className="text-sm text-gray-600 mb-5 line-clamp-3">
+          {language === 'es' ? yacht.descriptionEs || yacht.description : yacht.description}
+        </div>
+        
+        <a 
+          href="#contact" 
+          className={cn(
+            "block w-full text-center py-3 rounded-lg font-medium transition-colors duration-200",
+            "bg-turquoise-100 text-turquoise-800 hover:bg-turquoise-200"
+          )}
+        >
+          {texts.learnMore[language]}
+        </a>
+      </div>
     </div>
   );
 };

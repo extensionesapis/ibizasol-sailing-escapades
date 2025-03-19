@@ -1,5 +1,5 @@
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
 import Fleet from '@/components/Fleet';
@@ -10,6 +10,8 @@ import Gallery from '@/components/Gallery';
 import Footer from '@/components/Footer';
 
 const Index: React.FC = () => {
+  const [language, setLanguage] = useState<'es' | 'en'>('es');
+  
   useEffect(() => {
     // Optimized animation for elements that should animate when they enter the viewport
     const animateOnScroll = () => {
@@ -44,17 +46,32 @@ const Index: React.FC = () => {
     });
 
     // Check if language is set in localStorage
-    if (!localStorage.getItem('language')) {
+    const storedLanguage = localStorage.getItem('language') as 'es' | 'en';
+    if (!storedLanguage) {
       localStorage.setItem('language', 'es'); // Default to Spanish
+    } else {
+      setLanguage(storedLanguage);
     }
+    
+    // Listen for language change events
+    const handleLanguageChange = (event: CustomEvent) => {
+      const newLanguage = event.detail as 'es' | 'en';
+      setLanguage(newLanguage);
+    };
+    
+    window.addEventListener('languageChange', handleLanguageChange as EventListener);
+    
+    return () => {
+      window.removeEventListener('languageChange', handleLanguageChange as EventListener);
+    };
   }, []);
   
   return (
     <div className="min-h-screen bg-white overflow-hidden">
       <Navbar />
-      <Hero />
-      <Fleet />
-      <Activities />
+      <Hero key={`hero-${language}`} />
+      <Fleet key={`fleet-${language}`} />
+      <Activities key={`activities-${language}`} />
       <About />
       <Testimonials />
       <Gallery />
