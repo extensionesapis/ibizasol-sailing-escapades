@@ -1,7 +1,8 @@
 
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Sunset, Map, GlassWater, PartyPopper, Sailboat, Route } from 'lucide-react';
 import { useLanguage } from '@/hooks/use-language';
+import { cn } from '@/lib/utils';
 
 interface Activity {
   title: string;
@@ -131,24 +132,37 @@ const Activities: React.FC = () => {
   };
 
   return (
-    <section id="experiences" className="py-20 px-4 bg-gradient-to-b from-gray-50 to-turquoise-50">
-      <div className="container mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-turquoise-800 mb-4">
+    <section id="experiences" className="relative py-24 px-4 overflow-hidden">
+      {/* Background with gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-to-b from-white via-turquoise-50 to-white -z-10"></div>
+      
+      {/* Decorative elements */}
+      <div className="absolute top-10 left-10 w-64 h-64 bg-turquoise-200 rounded-full opacity-20 blur-3xl -z-5"></div>
+      <div className="absolute bottom-10 right-10 w-96 h-96 bg-sunset-300 rounded-full opacity-20 blur-3xl -z-5"></div>
+      
+      <div className="container mx-auto max-w-7xl relative">
+        {/* Header section with improved typography */}
+        <div className="text-center mb-20">
+          <h2 className="text-4xl md:text-5xl font-bold text-turquoise-800 mb-6 tracking-tight">
             {texts.title[language]}
           </h2>
-          <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+          <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
             {texts.subtitle[language]}
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* Redesigned grid layout */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
           {activities.map((activity, index) => (
             <div
               key={activity.title}
-              className="relative group rounded-xl overflow-hidden shadow-lg h-96 bg-white transition-all duration-300 hover:shadow-xl animate-fade-in transform hover:-translate-y-2"
-              style={{ animationDelay: `${index * 0.1}s` }}
+              className="group rounded-xl overflow-hidden shadow-lg h-[400px] relative bg-white transition-all duration-500 hover:shadow-2xl hover:-translate-y-2"
+              style={{
+                animationDelay: `${index * 0.1}s`,
+                transformStyle: 'preserve-3d',
+              }}
             >
+              {/* Card image with improved overlay */}
               <div className="absolute inset-0 overflow-hidden">
                 <img
                   src={activity.image}
@@ -156,26 +170,35 @@ const Activities: React.FC = () => {
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   loading="lazy"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent opacity-90" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-90 group-hover:opacity-75 transition-opacity duration-500" />
               </div>
               
-              <div className="absolute w-full bottom-0 p-6 text-white z-10">
-                <div className={`w-12 h-12 rounded-full mb-4 flex items-center justify-center bg-gradient-to-r ${activity.color} shadow-md`}>
-                  <activity.icon className="w-6 h-6" />
+              {/* Content with enhanced positioning and interaction */}
+              <div className="absolute w-full h-full flex flex-col justify-end p-7 text-white z-10 transition-all duration-500">
+                <div className={`w-14 h-14 rounded-full mb-5 flex items-center justify-center bg-gradient-to-r ${activity.color} shadow-lg transform group-hover:scale-110 transition-transform duration-500`}>
+                  <activity.icon className="w-7 h-7" />
                 </div>
-                <h3 className="text-2xl font-bold mb-3 group-hover:text-turquoise-200 transition-colors">
+                
+                <h3 className="text-2xl font-bold mb-3 group-hover:text-turquoise-200 transition-colors duration-300">
                   {activityTranslations[activity.title][language]}
                 </h3>
-                <p className="text-white/90 mb-5 transition-opacity group-hover:opacity-100">
+                
+                {/* Description with improved visibility */}
+                <p className="text-white/90 mb-5 transition-all duration-300 transform group-hover:translate-y-0 line-clamp-3 group-hover:line-clamp-none">
                   {descriptionTranslations[activity.description][language]}
                 </p>
+                
+                {/* Updated call-to-action button */}
                 <a
                   href="#contact"
-                  className="inline-flex items-center text-sm font-medium text-white group-hover:text-turquoise-200 transition-colors"
+                  className={cn(
+                    "mt-auto inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 backdrop-blur-sm",
+                    "bg-white/10 hover:bg-white/20 text-white group-hover:text-turquoise-200"
+                  )}
                 >
                   {texts.learnMore[language]}
                   <svg
-                    className="ml-1 w-4 h-4 transition-transform group-hover:translate-x-1"
+                    className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
