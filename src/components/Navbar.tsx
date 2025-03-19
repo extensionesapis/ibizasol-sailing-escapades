@@ -50,29 +50,32 @@ const Navbar: React.FC = () => {
     <div className="w-full flex justify-center fixed top-0 left-0 z-50 pt-4 md:pt-6 transition-all duration-300">
       <header
         className={cn(
-          'w-11/12 max-w-6xl rounded-full py-3 h-16 transition-colors duration-300',
+          'w-11/12 max-w-6xl rounded-full transition-colors duration-300',
           isScrolled
             ? 'bg-white/95 backdrop-blur-md shadow-lg'
             : 'bg-white/30 backdrop-blur-sm border border-white/30'
         )}
-        style={{ minHeight: '64px' }} /* Esto evita que cambie de tamaño */
+        style={{ 
+          height: '76px', // Increased fixed height 
+          minHeight: '76px' // Ensure it never gets smaller
+        }}
       >
         <div className="px-4 md:px-6 mx-auto flex items-center justify-between h-full">
-          <a href="/" className="flex items-center gap-1 md:gap-2 z-10">
+          {/* Logo - Significantly larger */}
+          <a href="/" className="flex items-center z-10">
             {isScrolled ? (
               <img 
                 src="/lovable-uploads/588c8f79-eeee-47ce-9e79-a289d2c9dcfb.png" 
                 alt="IbizaSol Charter Logo - Black" 
-                className="h-10 md:h-12 w-auto"
+                className="h-14 md:h-16 w-auto" // Much larger logo
               />
             ) : (
               <img 
                 src="/lovable-uploads/bf6342cc-812b-4a0a-b7e8-93eae05c8c0e.png" 
                 alt="IbizaSol Charter Logo - White" 
-                className="h-10 md:h-12 w-auto"
+                className="h-14 md:h-16 w-auto" // Much larger logo
               />
             )}
-            {/* Elimino el texto IbizaSolCharter */}
           </a>
 
           {/* Desktop Navigation - Centered */}
@@ -91,12 +94,12 @@ const Navbar: React.FC = () => {
             ))}
           </nav>
 
-          {/* Right-aligned items */}
-          <div className="flex items-center space-x-2 md:space-x-4 z-10">
-            {/* Language Selector Dropdown */}
+          {/* Right-aligned items with fixed width to prevent layout shift */}
+          <div className="flex items-center z-10" style={{ width: '200px', justifyContent: 'flex-end' }}>
+            {/* Language Selector Dropdown - Fixed width */}
             <DropdownMenu>
               <DropdownMenuTrigger className={cn(
-                "flex items-center gap-1 px-2 py-1 md:px-3 md:py-1 rounded-md transition-colors",
+                "flex items-center gap-1 px-3 py-2 rounded-md transition-colors w-20 justify-center mr-2",
                 isScrolled ? "text-turquoise-800 hover:bg-turquoise-100" : "text-white hover:bg-white/20"
               )}>
                 <Globe className="h-4 w-4" />
@@ -118,10 +121,11 @@ const Navbar: React.FC = () => {
               </DropdownMenuContent>
             </DropdownMenu>
 
+            {/* Book Now button - Fixed width */}
             <a
               href="#contact"
               className={cn(
-                'hidden sm:inline-block px-4 md:px-6 py-2 md:py-3 rounded-full font-medium transition-all duration-300 transform hover:scale-105 shadow-md',
+                'hidden sm:flex items-center justify-center px-4 py-2 rounded-full font-medium transition-all duration-300 transform hover:scale-105 shadow-md w-32',
                 isScrolled
                   ? 'bg-turquoise-500 hover:bg-turquoise-600 text-white'
                   : 'bg-white/60 text-turquoise-800 hover:bg-white/70 border border-white/50'
@@ -158,7 +162,7 @@ const Navbar: React.FC = () => {
               <img 
                 src="/lovable-uploads/588c8f79-eeee-47ce-9e79-a289d2c9dcfb.png" 
                 alt="IbizaSol Charter Logo" 
-                className="h-20 w-auto mx-auto"
+                className="h-28 w-auto mx-auto" // Even larger logo in mobile menu
               />
             </div>
             <nav className="flex flex-col items-center space-y-6 w-full">
