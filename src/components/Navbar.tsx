@@ -114,7 +114,7 @@ const Navbar: React.FC = () => {
             <a
               href="#contact"
               className={cn(
-                'px-6 py-3 rounded-full font-medium transition-all duration-300 transform hover:scale-105 shadow-md',
+                'hidden sm:inline-block px-6 py-3 rounded-full font-medium transition-all duration-300 transform hover:scale-105 shadow-md',
                 isScrolled
                   ? 'bg-turquoise-500 hover:bg-turquoise-600 text-white'
                   : 'bg-white/40 backdrop-blur-sm text-white hover:bg-white/50 border border-white/50'

@@ -6,7 +6,7 @@ const Footer: React.FC = () => {
   return (
     <footer id="contact" className="bg-ocean-900 text-white pt-16 pb-8">
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 md:gap-12">
           <div>
             <div className="flex items-center gap-2 mb-6">
               <Anchor className="w-8 h-8 text-ocean-300" />
@@ -42,7 +42,7 @@ const Footer: React.FC = () => {
             </div>
           </div>
 
-          <div>
+          <div className="mt-8 sm:mt-0">
             <h3 className="text-xl font-bold mb-6">Quick Links</h3>
             <ul className="space-y-4">
               {['Home', 'Fleet', 'Experiences', 'About', 'Gallery', 'Contact'].map((item) => (
@@ -58,7 +58,7 @@ const Footer: React.FC = () => {
             </ul>
           </div>
 
-          <div>
+          <div className="mt-8 lg:mt-0">
             <h3 className="text-xl font-bold mb-6">Contact Us</h3>
             <ul className="space-y-4">
               <li className="flex items-start">
@@ -82,7 +82,7 @@ const Footer: React.FC = () => {
             </ul>
           </div>
 
-          <div>
+          <div className="mt-8 lg:mt-0">
             <h3 className="text-xl font-bold mb-6">Newsletter</h3>
             <p className="text-ocean-100/80 mb-4">
               Subscribe to our newsletter to receive special offers and updates on new yacht additions.
