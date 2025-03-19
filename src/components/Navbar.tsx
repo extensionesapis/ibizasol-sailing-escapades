@@ -148,21 +148,21 @@ const Navbar: React.FC = () => {
           </button>
         </div>
 
-        {/* Mobile Menu - Fixed and improved */}
+        {/* Mobile Menu - Fixed spacing and improved */}
         {isMobileMenuOpen && (
           <div
-            className="md:hidden fixed inset-0 bg-turquoise-900/95 backdrop-blur-md z-40 flex flex-col justify-start pt-24"
+            className="md:hidden fixed inset-0 bg-turquoise-900/95 backdrop-blur-md z-40 flex flex-col justify-start pt-28"
             onClick={() => setIsMobileMenuOpen(false)}
           >
             <div className="flex flex-col items-center p-6 overflow-y-auto max-h-[100vh]" onClick={(e) => e.stopPropagation()}>
-              <div className="mb-8">
+              <div className="mb-10">
                 <img 
                   src="/lovable-uploads/588c8f79-eeee-47ce-9e79-a289d2c9dcfb.png" 
                   alt="IbizaSol Charter Logo" 
                   className="h-32 w-auto mx-auto" // Even larger logo in mobile menu
                 />
               </div>
-              <nav className="flex flex-col items-center space-y-6 w-full">
+              <nav className="flex flex-col items-center space-y-6 w-full mt-6">
                 {['Home', 'Fleet', 'Experiences', 'About', 'Gallery', 'Contact'].map((item) => (
                   <a
                     key={item}
@@ -174,8 +174,8 @@ const Navbar: React.FC = () => {
                   </a>
                 ))}
                 
-                {/* Language Selector for Mobile - Improved */}
-                <div className="flex gap-6 mt-4 w-full justify-center">
+                {/* Language Selector for Mobile - Improved spacing */}
+                <div className="flex gap-6 mt-6 w-full justify-center">
                   <button 
                     onClick={() => handleLanguageChange('es')} 
                     className={`flex items-center gap-2 px-5 py-3 rounded-md ${language === 'es' ? 'bg-white/20 text-turquoise-300' : 'text-white'}`}
@@ -194,7 +194,7 @@ const Navbar: React.FC = () => {
                 
                 <a
                   href="#contact"
-                  className="mt-8 px-8 py-4 bg-white text-turquoise-800 rounded-full font-medium hover:bg-opacity-90 transition-colors shadow-md w-full max-w-xs text-center text-lg"
+                  className="mt-10 px-8 py-4 bg-white text-turquoise-800 rounded-full font-medium hover:bg-opacity-90 transition-colors shadow-md w-full max-w-xs text-center text-lg"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {language === 'es' ? 'Reservar' : 'Book Now'}
