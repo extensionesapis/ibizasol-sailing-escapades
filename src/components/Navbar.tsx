@@ -1,18 +1,19 @@
 
 import React, { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
-import { Menu, X, Anchor, Globe } from 'lucide-react';
+import { Menu, X, Globe } from 'lucide-react';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+import { useLanguage } from '@/hooks/use-language';
 
 const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [language, setLanguage] = useState<'es' | 'en'>('es');
+  const { language, setLanguage } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -35,6 +36,7 @@ const Navbar: React.FC = () => {
 
   const handleLanguageChange = (lang: 'es' | 'en') => {
     setLanguage(lang);
+    
     // Store the language preference in localStorage
     localStorage.setItem('language', lang);
     
@@ -44,28 +46,24 @@ const Navbar: React.FC = () => {
     window.dispatchEvent(event);
   };
 
-  // Check for stored language preference on component mount
-  useEffect(() => {
-    const storedLanguage = localStorage.getItem('language') as 'es' | 'en';
-    if (storedLanguage) {
-      setLanguage(storedLanguage);
-    }
-  }, []);
-
   return (
     <div className="w-full flex justify-center fixed top-0 left-0 z-50 pt-4 md:pt-6 transition-all duration-300">
       <header
         className={cn(
-          'w-11/12 max-w-6xl rounded-full py-3 transition-all duration-300',
+          'w-11/12 max-w-6xl rounded-full py-3 h-16 transition-all duration-300',
           isScrolled
             ? 'bg-white/95 backdrop-blur-md shadow-lg'
             : 'bg-white/30 backdrop-blur-sm border border-white/30'
         )}
       >
-        <div className="px-4 md:px-6 mx-auto flex items-center justify-between">
-          <a href="#" className="flex items-center gap-1 md:gap-2 z-10">
-            <Anchor className={cn("w-6 h-6 md:w-8 md:h-8", isScrolled ? "text-turquoise-600" : "text-white")} />
-            <span className={cn("text-xl md:text-2xl font-bold tracking-tight", 
+        <div className="px-4 md:px-6 mx-auto flex items-center justify-between h-full">
+          <a href="/" className="flex items-center gap-1 md:gap-2 z-10">
+            <img 
+              src="/lovable-uploads/bf6342cc-812b-4a0a-b7e8-93eae05c8c0e.png" 
+              alt="IbizaSol Charter Logo" 
+              className="h-8 md:h-10 w-auto"
+            />
+            <span className={cn("text-xl md:text-2xl font-bold tracking-tight hidden sm:inline-block", 
               isScrolled ? "text-turquoise-800" : "text-white")}>
               IbizaSol<span className={isScrolled ? "text-turquoise-500" : "text-turquoise-300"}>Charter</span>
             </span>
@@ -150,6 +148,13 @@ const Navbar: React.FC = () => {
           )}
         >
           <div className="h-full flex flex-col items-center justify-center p-6">
+            <div className="mb-8">
+              <img 
+                src="/lovable-uploads/bf6342cc-812b-4a0a-b7e8-93eae05c8c0e.png" 
+                alt="IbizaSol Charter Logo" 
+                className="h-16 w-auto mx-auto"
+              />
+            </div>
             <nav className="flex flex-col items-center space-y-6 w-full">
               {['Home', 'Fleet', 'Experiences', 'About', 'Gallery', 'Contact'].map((item) => (
                 <a
