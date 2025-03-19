@@ -1,4 +1,3 @@
-
 import React, { useEffect, useRef, useState } from 'react';
 import { ArrowDownCircle, Calendar, Users, Anchor, Search } from 'lucide-react';
 import { Input } from '@/components/ui/input';
@@ -20,7 +19,6 @@ import { format } from 'date-fns';
 import { es, enUS } from 'date-fns/locale';
 import { useLanguage } from '@/hooks/use-language';
 
-// Translations object
 const texts = {
   title: {
     es: 'Alquiler de Yates de Lujo en Ibiza',
@@ -113,7 +111,7 @@ const Hero: React.FC = () => {
         ref={heroRef}
         className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage: "url('https://images.unsplash.com/photo-1565627464556-096cc6b0ab35?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')",
+          backgroundImage: "url('/lovable-uploads/f44293e7-da37-4e6c-a85f-d9a87ee61074.png')",
           zIndex: -1,
         }}
       />
