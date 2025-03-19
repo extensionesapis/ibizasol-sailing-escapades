@@ -93,51 +93,55 @@ const Testimonials: React.FC = () => {
   }, [currentSlide]);
 
   return (
-    <section className="py-20 bg-gradient-to-br from-ocean-900 to-ocean-800 text-white relative overflow-hidden">
-      {/* Background decorative elements */}
-      <div className="absolute inset-0 overflow-hidden opacity-10">
-        <div className="absolute -top-24 -left-24 w-96 h-96 rounded-full bg-cyan-400 blur-3xl"></div>
-        <div className="absolute top-1/2 -right-48 w-96 h-96 rounded-full bg-blue-400 blur-3xl"></div>
-        <div className="absolute -bottom-24 left-1/3 w-72 h-72 rounded-full bg-teal-300 blur-3xl"></div>
+    <section className="py-24 bg-gradient-to-b from-ocean-900 via-ocean-800 to-ocean-900 text-white relative overflow-hidden">
+      {/* Decorative elements */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute top-0 left-0 w-full h-full">
+          <div className="absolute top-[10%] left-[5%] w-72 h-72 rounded-full bg-turquoise-500/10 blur-[100px]"></div>
+          <div className="absolute bottom-[10%] right-[5%] w-96 h-96 rounded-full bg-ocean-400/10 blur-[120px]"></div>
+          <div className="absolute top-[40%] right-[15%] w-64 h-64 rounded-full bg-sunset-300/5 blur-[80px]"></div>
+        </div>
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
-        <div className="text-center mb-16 max-w-2xl mx-auto">
-          <h2 className="text-3xl md:text-5xl font-bold mb-6 tracking-tight">
-            What Our <span className="text-turquoise-300">Clients</span> Say
+        <div className="text-center mb-16 max-w-xl mx-auto">
+          <span className="inline-block py-1 px-3 rounded-full bg-gradient-to-r from-turquoise-400/20 to-turquoise-300/10 text-turquoise-200 text-sm font-medium mb-4 backdrop-blur-sm border border-turquoise-400/10">
+            Client Stories
+          </span>
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight">
+            What Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-turquoise-300 to-turquoise-100">Clients</span> Say
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-turquoise-400 to-ocean-500 mx-auto mb-6"></div>
-          <p className="text-lg text-ocean-100/90">
-            Discover why our guests keep coming back for unforgettable yacht experiences
+          <p className="text-lg text-ocean-100/80 leading-relaxed">
+            Discover why our guests keep coming back for unforgettable Mediterranean experiences
           </p>
         </div>
 
         <div className="relative max-w-5xl mx-auto">
           {/* Control buttons */}
-          <div className="absolute -left-4 md:-left-12 top-1/2 -translate-y-1/2 z-20">
+          <div className="absolute -left-5 md:-left-12 top-1/2 -translate-y-1/2 z-20">
             <button
               onClick={prevSlide}
-              className="group bg-white/10 backdrop-blur-md hover:bg-white/20 text-white rounded-full p-3 md:p-4 transition-all duration-300 shadow-lg hover:shadow-xl border border-white/10"
+              className="group bg-black/10 hover:bg-black/20 text-white rounded-full p-3 transition-all duration-300 backdrop-blur-md border border-white/10 shadow-lg hover:shadow-turquoise-400/20"
               aria-label="Previous testimonial"
             >
-              <ChevronLeft className="w-6 h-6 group-hover:scale-110 transition-transform" />
+              <ChevronLeft className="w-7 h-7 group-hover:scale-110 transition-transform" />
             </button>
           </div>
 
-          <div className="absolute -right-4 md:-right-12 top-1/2 -translate-y-1/2 z-20">
+          <div className="absolute -right-5 md:-right-12 top-1/2 -translate-y-1/2 z-20">
             <button
               onClick={nextSlide}
-              className="group bg-white/10 backdrop-blur-md hover:bg-white/20 text-white rounded-full p-3 md:p-4 transition-all duration-300 shadow-lg hover:shadow-xl border border-white/10"
+              className="group bg-black/10 hover:bg-black/20 text-white rounded-full p-3 transition-all duration-300 backdrop-blur-md border border-white/10 shadow-lg hover:shadow-turquoise-400/20"
               aria-label="Next testimonial"
             >
-              <ChevronRight className="w-6 h-6 group-hover:scale-110 transition-transform" />
+              <ChevronRight className="w-7 h-7 group-hover:scale-110 transition-transform" />
             </button>
           </div>
 
           {/* Testimonial slider */}
           <div 
             ref={sliderRef}
-            className="overflow-hidden rounded-2xl"
+            className="overflow-hidden rounded-3xl"
           >
             <div
               className="flex transition-transform duration-500 ease-out"
@@ -148,30 +152,36 @@ const Testimonials: React.FC = () => {
                   key={testimonial.id}
                   className="min-w-full"
                 >
-                  <Card className="bg-white/10 backdrop-blur-md border-white/20 shadow-xl overflow-hidden">
+                  <Card className="border-0 shadow-2xl overflow-hidden bg-transparent">
                     <CardContent className="p-0">
-                      <div className="flex flex-col md:flex-row">
-                        <div className="md:w-1/3 bg-gradient-to-br from-ocean-700/80 to-ocean-900/80 p-8 flex flex-col justify-center items-center text-center relative">
-                          <Quote className="absolute top-6 left-6 w-12 h-12 text-white/10" />
-                          <div className="relative z-10">
-                            <div className="w-24 h-24 mb-6 mx-auto rounded-full overflow-hidden border-4 border-white/20 shadow-lg">
+                      <div className="flex flex-col md:flex-row rounded-3xl overflow-hidden">
+                        {/* Left section - Avatar and info */}
+                        <div className="md:w-2/5 bg-gradient-to-br from-turquoise-900/60 to-ocean-900/60 p-8 md:p-10 flex flex-col justify-center items-center text-center relative backdrop-blur-md">
+                          <div className="absolute top-0 left-0 w-full h-full opacity-20">
+                            <svg className="w-full h-full" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                              <path fill="#40CFC5" d="M41.9,-65.7C54.3,-58.5,64.2,-46.8,71.1,-33C78,-19.1,81.9,-3.1,78.8,11.1C75.7,25.4,65.6,37.9,53.9,48.4C42.3,58.9,29.1,67.3,13.9,71.7C-1.3,76.1,-18.5,76.5,-32.5,69.7C-46.5,62.9,-57.4,48.9,-65.2,33.7C-73,18.6,-77.7,2.3,-74.2,-12.1C-70.7,-26.5,-59,-39,-46,-49.1C-32.9,-59.3,-18.5,-67.1,-2.1,-64.2C14.2,-61.3,29.5,-72.9,41.9,-65.7Z" transform="translate(100 100)" />
+                            </svg>
+                          </div>
+                          
+                          <div className="relative z-10 mb-8 mt-4">
+                            <div className="w-28 h-28 rounded-full overflow-hidden border-4 border-white/20 shadow-xl mx-auto mb-6 transform transition-transform duration-500 hover:scale-105">
                               <img
                                 src={testimonial.avatar}
                                 alt={testimonial.name}
                                 className="w-full h-full object-cover"
                               />
                             </div>
-                            <h4 className="text-xl font-bold mb-1">{testimonial.name}</h4>
+                            <h4 className="text-2xl font-bold mb-1">{testimonial.name}</h4>
                             <p className="text-sm text-ocean-100/80 mb-4">{testimonial.location}</p>
-                            <div className="flex justify-center mb-2">
+                            <div className="flex justify-center gap-1">
                               {[...Array(5)].map((_, i) => (
                                 <Star
                                   key={i}
                                   className={cn(
                                     "w-5 h-5", 
                                     i < testimonial.rating 
-                                      ? "fill-yellow-400 text-yellow-400" 
-                                      : "text-gray-400"
+                                      ? "fill-sand-400 text-sand-400" 
+                                      : "text-gray-500/30"
                                   )}
                                 />
                               ))}
@@ -179,12 +189,14 @@ const Testimonials: React.FC = () => {
                           </div>
                         </div>
                         
-                        <div className="md:w-2/3 p-8 md:p-10 flex items-center">
+                        {/* Right section - Quote */}
+                        <div className="md:w-3/5 p-8 md:p-12 bg-white/10 backdrop-blur-md flex items-center">
                           <div>
-                            <Quote className="w-12 h-12 mb-6 text-ocean-300/30 rotate-180" />
-                            <p className="text-lg md:text-xl leading-relaxed mb-8 italic">
+                            <Quote className="w-12 h-12 mb-6 text-turquoise-400/30 rotate-180" />
+                            <p className="text-lg leading-relaxed mb-8 italic text-white/90">
                               "{testimonial.text}"
                             </p>
+                            <div className="w-10 h-1 bg-gradient-to-r from-turquoise-400 to-transparent rounded-full"></div>
                           </div>
                         </div>
                       </div>
@@ -196,7 +208,7 @@ const Testimonials: React.FC = () => {
           </div>
 
           {/* Dots navigation */}
-          <div className="flex justify-center mt-10 gap-3">
+          <div className="flex justify-center mt-10 gap-2">
             {testimonials.map((_, index) => (
               <button
                 key={index}
@@ -207,10 +219,10 @@ const Testimonials: React.FC = () => {
                   setTimeout(() => setIsAnimating(false), 500);
                 }}
                 className={cn(
-                  "w-3 h-3 rounded-full transition-all duration-300",
+                  "h-2 rounded-full transition-all duration-300",
                   index === currentSlide 
-                    ? "bg-turquoise-400 scale-125 shadow-[0_0_8px_rgba(64,207,197,0.6)]" 
-                    : "bg-white/30 hover:bg-white/50"
+                    ? "w-8 bg-turquoise-400" 
+                    : "w-2 bg-white/30 hover:bg-white/50"
                 )}
                 aria-label={`Go to testimonial ${index + 1}`}
               />
