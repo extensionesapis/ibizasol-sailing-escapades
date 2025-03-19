@@ -56,24 +56,24 @@ const Navbar: React.FC = () => {
             : 'bg-white/30 backdrop-blur-sm border border-white/30'
         )}
         style={{ 
-          height: '76px', // Increased fixed height 
-          minHeight: '76px' // Ensure it never gets smaller
+          height: '90px', // Increased height for larger logo
+          minHeight: '90px' // Ensure it never gets smaller
         }}
       >
         <div className="px-4 md:px-6 mx-auto flex items-center justify-between h-full">
-          {/* Logo - Significantly larger */}
+          {/* Logo - Even larger now */}
           <a href="/" className="flex items-center z-10">
             {isScrolled ? (
               <img 
                 src="/lovable-uploads/588c8f79-eeee-47ce-9e79-a289d2c9dcfb.png" 
                 alt="IbizaSol Charter Logo - Black" 
-                className="h-14 md:h-16 w-auto" // Much larger logo
+                className="h-20 md:h-24 w-auto" // Significantly larger logo
               />
             ) : (
               <img 
                 src="/lovable-uploads/bf6342cc-812b-4a0a-b7e8-93eae05c8c0e.png" 
                 alt="IbizaSol Charter Logo - White" 
-                className="h-14 md:h-16 w-auto" // Much larger logo
+                className="h-20 md:h-24 w-auto" // Significantly larger logo
               />
             )}
           </a>
@@ -95,11 +95,11 @@ const Navbar: React.FC = () => {
           </nav>
 
           {/* Right-aligned items with fixed width to prevent layout shift */}
-          <div className="flex items-center z-10" style={{ width: '200px', justifyContent: 'flex-end' }}>
+          <div className="flex items-center z-10" style={{ width: '220px', justifyContent: 'flex-end' }}>
             {/* Language Selector Dropdown - Fixed width */}
             <DropdownMenu>
               <DropdownMenuTrigger className={cn(
-                "flex items-center gap-1 px-3 py-2 rounded-md transition-colors w-20 justify-center mr-2",
+                "flex items-center gap-1 px-3 py-2 rounded-md transition-colors w-24 justify-center mr-3",
                 isScrolled ? "text-turquoise-800 hover:bg-turquoise-100" : "text-white hover:bg-white/20"
               )}>
                 <Globe className="h-4 w-4" />
@@ -125,7 +125,7 @@ const Navbar: React.FC = () => {
             <a
               href="#contact"
               className={cn(
-                'hidden sm:flex items-center justify-center px-4 py-2 rounded-full font-medium transition-all duration-300 transform hover:scale-105 shadow-md w-32',
+                'hidden sm:flex items-center justify-center px-4 py-2 rounded-full font-medium transition-all duration-300 transform hover:scale-105 shadow-md w-36',
                 isScrolled
                   ? 'bg-turquoise-500 hover:bg-turquoise-600 text-white'
                   : 'bg-white/60 text-turquoise-800 hover:bg-white/70 border border-white/50'
@@ -144,67 +144,65 @@ const Navbar: React.FC = () => {
             )}
             aria-label="Toggle menu"
           >
-            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
           </button>
         </div>
 
-        {/* Mobile Menu - Mejorado */}
-        <div
-          className={cn(
-            'md:hidden fixed inset-0 bg-turquoise-900/95 backdrop-blur-md transition-all duration-300 ease-in-out z-40',
-            isMobileMenuOpen 
-              ? 'opacity-100 pointer-events-auto' 
-              : 'opacity-0 pointer-events-none'
-          )}
-        >
-          <div className="h-full flex flex-col items-center justify-center p-6">
-            <div className="mb-8">
-              <img 
-                src="/lovable-uploads/588c8f79-eeee-47ce-9e79-a289d2c9dcfb.png" 
-                alt="IbizaSol Charter Logo" 
-                className="h-28 w-auto mx-auto" // Even larger logo in mobile menu
-              />
-            </div>
-            <nav className="flex flex-col items-center space-y-6 w-full">
-              {['Home', 'Fleet', 'Experiences', 'About', 'Gallery', 'Contact'].map((item) => (
+        {/* Mobile Menu - Fixed and improved */}
+        {isMobileMenuOpen && (
+          <div
+            className="md:hidden fixed inset-0 bg-turquoise-900/95 backdrop-blur-md z-40 flex flex-col justify-start pt-24"
+            onClick={() => setIsMobileMenuOpen(false)}
+          >
+            <div className="flex flex-col items-center p-6 overflow-y-auto max-h-[100vh]" onClick={(e) => e.stopPropagation()}>
+              <div className="mb-8">
+                <img 
+                  src="/lovable-uploads/588c8f79-eeee-47ce-9e79-a289d2c9dcfb.png" 
+                  alt="IbizaSol Charter Logo" 
+                  className="h-32 w-auto mx-auto" // Even larger logo in mobile menu
+                />
+              </div>
+              <nav className="flex flex-col items-center space-y-6 w-full">
+                {['Home', 'Fleet', 'Experiences', 'About', 'Gallery', 'Contact'].map((item) => (
+                  <a
+                    key={item}
+                    href={`#${item.toLowerCase()}`}
+                    className="text-white text-xl font-medium hover:text-turquoise-300 transition-colors w-full text-center py-3 border-b border-turquoise-700/50"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    {item}
+                  </a>
+                ))}
+                
+                {/* Language Selector for Mobile - Improved */}
+                <div className="flex gap-6 mt-4 w-full justify-center">
+                  <button 
+                    onClick={() => handleLanguageChange('es')} 
+                    className={`flex items-center gap-2 px-5 py-3 rounded-md ${language === 'es' ? 'bg-white/20 text-turquoise-300' : 'text-white'}`}
+                  >
+                    <span className="text-xl">🇪🇸</span>
+                    <span className="text-lg">Español</span>
+                  </button>
+                  <button 
+                    onClick={() => handleLanguageChange('en')} 
+                    className={`flex items-center gap-2 px-5 py-3 rounded-md ${language === 'en' ? 'bg-white/20 text-turquoise-300' : 'text-white'}`}
+                  >
+                    <span className="text-xl">🇬🇧</span>
+                    <span className="text-lg">English</span>
+                  </button>
+                </div>
+                
                 <a
-                  key={item}
-                  href={`#${item.toLowerCase()}`}
-                  className="text-white text-xl font-medium hover:text-turquoise-300 transition-colors w-full text-center py-3 border-b border-turquoise-700/50"
+                  href="#contact"
+                  className="mt-8 px-8 py-4 bg-white text-turquoise-800 rounded-full font-medium hover:bg-opacity-90 transition-colors shadow-md w-full max-w-xs text-center text-lg"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
-                  {item}
+                  {language === 'es' ? 'Reservar' : 'Book Now'}
                 </a>
-              ))}
-              
-              {/* Language Selector for Mobile - Improved */}
-              <div className="flex gap-4 mt-4 w-full justify-center">
-                <button 
-                  onClick={() => handleLanguageChange('es')} 
-                  className={`flex items-center gap-1 px-4 py-2 rounded-md ${language === 'es' ? 'bg-white/20 text-turquoise-300' : 'text-white'}`}
-                >
-                  <span className="text-lg">🇪🇸</span>
-                  <span>Español</span>
-                </button>
-                <button 
-                  onClick={() => handleLanguageChange('en')} 
-                  className={`flex items-center gap-1 px-4 py-2 rounded-md ${language === 'en' ? 'bg-white/20 text-turquoise-300' : 'text-white'}`}
-                >
-                  <span className="text-lg">🇬🇧</span>
-                  <span>English</span>
-                </button>
-              </div>
-              
-              <a
-                href="#contact"
-                className="mt-8 px-8 py-3 bg-white text-turquoise-800 rounded-full font-medium hover:bg-opacity-90 transition-colors shadow-md w-full max-w-xs text-center"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                {language === 'es' ? 'Reservar' : 'Book Now'}
-              </a>
-            </nav>
+              </nav>
+            </div>
           </div>
-        </div>
+        )}
       </header>
     </div>
   );
