@@ -68,13 +68,18 @@ const About: React.FC = () => {
   }, []);
 
   return (
-    <section id="about" className="py-24 px-4 bg-gradient-to-b from-white to-ocean-50/30">
-      <div className="container mx-auto max-w-7xl">
+    <section id="about" className="py-24 px-4 bg-gradient-to-br from-white via-ocean-50/20 to-turquoise-50/30 relative overflow-hidden">
+      {/* Decorative elements */}
+      <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-ocean-200/20 to-ocean-400/20 rounded-full blur-3xl -z-10"></div>
+      <div className="absolute bottom-20 left-10 w-80 h-80 bg-gradient-to-tr from-turquoise-200/20 to-turquoise-300/20 rounded-full blur-3xl -z-10"></div>
+      
+      <div className="container mx-auto max-w-7xl relative z-10">
         <div className="text-center mb-16">
+          <span className="inline-block text-sm font-semibold text-ocean-600 px-3 py-1 rounded-full bg-ocean-50 mb-4">ABOUT US</span>
           <h2 className="text-4xl md:text-5xl font-bold text-ocean-800 mb-4 tracking-tight">
             The <span className="text-ocean-600">IbizaSolCharter</span> Experience
           </h2>
-          <Separator className="w-24 h-1 mx-auto bg-ocean-500 my-6" />
+          <Separator className="w-24 h-1 mx-auto bg-gradient-to-r from-ocean-400 to-ocean-600 my-6" />
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">
             Discover the perfect blend of luxury, adventure, and local expertise with our premium yacht charter services
           </p>
@@ -96,9 +101,10 @@ const About: React.FC = () => {
             
             <a
               href="#contact"
-              className="inline-block px-8 py-4 bg-gradient-to-r from-ocean-600 to-ocean-500 text-white rounded-lg font-medium hover:from-ocean-700 hover:to-ocean-600 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-ocean-600 to-ocean-500 text-white rounded-lg font-medium hover:from-ocean-700 hover:to-ocean-600 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
             >
               Contact Our Team
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6"/></svg>
             </a>
           </div>
           
@@ -118,8 +124,8 @@ const About: React.FC = () => {
                 className="w-full h-full object-cover"
               />
             </div>
-            <div className="absolute -left-6 -top-6 w-32 h-32 rounded-full bg-ocean-100 z-0 hidden lg:block"></div>
-            <div className="absolute -right-12 top-1/3 w-24 h-24 rounded-full bg-sand-100 z-0 hidden lg:block"></div>
+            <div className="absolute -left-6 -top-6 w-32 h-32 rounded-full bg-ocean-100/80 backdrop-blur-sm z-0 hidden lg:block"></div>
+            <div className="absolute -right-12 top-1/3 w-24 h-24 rounded-full bg-sand-100/80 backdrop-blur-sm z-0 hidden lg:block"></div>
           </div>
         </div>
 
@@ -127,12 +133,12 @@ const About: React.FC = () => {
           {values.map((value, index) => (
             <Card
               key={value.title}
-              className="group bg-white border-none rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 overflow-hidden"
+              className="group bg-white/80 backdrop-blur-sm border-none rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 overflow-hidden"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               <CardContent className="p-8 relative">
                 <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-ocean-400 to-ocean-600 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
-                <div className="mb-6 p-4 rounded-full bg-ocean-50 w-16 h-16 flex items-center justify-center mx-auto group-hover:bg-ocean-100 transition-colors duration-300">
+                <div className="mb-6 p-4 rounded-full bg-gradient-to-br from-ocean-50 to-ocean-100 w-16 h-16 flex items-center justify-center mx-auto group-hover:from-ocean-100 group-hover:to-ocean-200 transition-colors duration-300">
                   {value.icon}
                 </div>
                 <h3 className="text-xl font-bold text-ocean-800 mb-3 text-center">{value.title}</h3>
